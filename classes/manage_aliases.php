@@ -79,10 +79,37 @@ class manage_aliases {
      * @param int $aliasid the record we're trying to get
      * @return object|false record data or false if not found.
      */
-    public function get_aliases(int $aliasid): mixed {
+    public function get_alias_by_url(int $aliasid): mixed {
         global $DB;
             return $DB->get_record('alias', ['id'=> $aliasid]);
     }
-}
 
+    /** Updates details for a single URL.
+     * @param int $oldurl the URL we're trying to update.
+     * @param string $friendlyurl the new friendly url.
+     * @param string $destinationurl the new destination url.
+     * @return bool the url data or false if not found.
+     */
+     public function update_alias(int $oldurl, string $friendlyurl, string $destinationurl): bool {
+        global $DB;
+        $update = new stdClass();
+        $update->id = $oldurl;
+        $update->friendly = $friendlyurl;
+        $update->destinationurl = $destinationurl;
+        try {
+            return $DB->update_record('alias', $update);
+        } catch (dml_exception $e) {
+            return false;
+        }
+    }
+
+    /** Deletes a URL.
+     * @param  int $aliasid the alias we're trying to delete.
+     * @return bool true if success
+     */
+    public function delete_alias(int $aliasid): bool {
+        global $DB;
+        return $DB->delete_records('alias', ['id' => $aliasid]);
+    }
+}
 ?>
