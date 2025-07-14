@@ -15,13 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Manage page for local_alias
- * @package   friendly_url
- * @copyright 2025, Abeeha Khan
+ * Edits local alias page. 
+ *
+ * @package   friendly_url 
+ * @copyright 2025, Abeeha Khan 
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__ . "config.php");
+require_once(__DIR__ . 'config.php');
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/manage_aliases.php');
-require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/search.php');
+require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/edit.php');
+
 ?>
