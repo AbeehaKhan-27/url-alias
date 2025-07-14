@@ -40,6 +40,12 @@ class search extends moodleform {
      */
     public function definition (): void {
         global $CFG;
+
+        $mform = this->form;
+        $mform->addElement('text','query', get_string('query_keyword', 'local_alias'));
+        $mform->setType('query', PARAM_NOTAGS);
+        $mform->addRule('query', get_string('err_required','local_alias'),'required', null,'client');
+        $mform->add_action_buttons(true, get_string('filter_button','local_alias'));
     }
 }
 ?>
