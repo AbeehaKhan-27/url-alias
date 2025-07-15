@@ -26,4 +26,41 @@ require_once(__DIR__ . 'config.php');
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/manage_aliases.php');
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/edit.php');
 
+$PAGE->set_url(new moodle_url('/local/alias/edit.php'));
+require_login();
+$system_context = context_system::instance();
+require_capability('local/alias:managealias', $system_context);
+$PAGE->set_context($system_context);
+$PAGE->set_heading(get_string('edit_alias','local_alias'));
+$PAGE->set_title(get_string('edit_alias','local_alias'));
+
+$aliasid = optional_param('aliasid', null, PARAM_INT);
+$mform = new edit();
+
+if($mform->is_cancelled()) {
+    redirect($CFG->wwwroot . '/local/alias/manage.php', get_string('cancelled_form', 'local_alias'));
+}
+elseif ($fromform = $mform->get_data()) {
+    $manager = new $alias_manger();
+    if ($fromform->id) {
+        $manager->update_alias($fromform->id, $fromform->friendly, $fromform->destination);
+        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('updated_form','local_alias'));
+    } else {
+        $manager->create_alias(friendlyurl: $fromform->friendly, destinationurl: $fromform->destination);
+        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('created_form','local_alias'));
+    }
+}
+
+if ($aliasid) {
+    $manager = new $alias_manger();
+    $alias = $manager->get_alias_by_id(aliasid: $aliasid);
+    $mform->set_data($alias);
+    if (!$alias) {
+        throw new invalid_parameter_exception(get_string('err_invalid', 'local_alias'));
+    }
+}
+
+echo $OUTPUT->header();
+$mform->display();
+echo $OUTPUT->footer();
 ?>
