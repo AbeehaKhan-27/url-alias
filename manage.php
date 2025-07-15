@@ -24,4 +24,46 @@
 require_once(__DIR__ . "config.php");
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/manage_aliases.php');
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/search.php');
+
+require_login();
+$systemcontext = context_system::instance();
+require_capability('local/alias:managealias', $systemcontext);
+
+$PAGE->set_url(new moodle_url('/local/alias/manage.php'));
+$PAGE->set_context($systemcontext);
+$PAGE->set_heading(get_string('manage_alias','local_alias'));
+$PAGE->set_title(get_string('manage_alias','local_alias'));
+$PAGE->requires->js_call_amd('local_alias/confirm');
+
+$manager = new alias_manager();
+$currpage = optional_param('page', 0, PARAM_INT);
+$query = optional_param('q', '', PARAM_NOTAGS);
+$perpage = 3;
+$mform = new search();
+
+if ($mform->is_cancelled()) {
+    redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('cancelled_search_form','local_alias'));
+} else if ($fromform = $mform->get_data()) {
+    if ($fromform->query) {
+        redirect($CFG->wwwroot . "/local/alias/manage.php?q=$fromform->query", get_string('submitted_search_form','local_alias'));
+    }
+}
+
+if ($query !== '') {
+    $mform->set_data(['query' => $query]);
+}
+
+$urls = $manager->get_aliases(currentpage: $currpage, query: $query);
+echo $OUTPUT->header();
+
+$templatecontext = [
+    'editurl'=> new moodle_url('/local/alias/edit.php'),
+    "empty" => count(value: $urls['aliases']) == 0,
+    "urls" => array_values(array: $urls['aliases']),
+    "URL_not_found" => get_string('URL_not_found', 'local_alias'),
+    'create_button' => get_string('create_button','local_alias'),
+    'edit_button' => get_string('edit_button','local_alias'),
+    'delete_button' => get_string('delete_button','local_alias'),
+    "form" => $mform->render(),
+];
 ?>

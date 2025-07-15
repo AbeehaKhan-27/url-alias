@@ -28,9 +28,9 @@ require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/edit.php'
 
 $PAGE->set_url(new moodle_url('/local/alias/edit.php'));
 require_login();
-$system_context = context_system::instance();
-require_capability('local/alias:managealias', $system_context);
-$PAGE->set_context($system_context);
+$systemcontext = context_system::instance();
+require_capability('local/alias:managealias', $systemcontext);
+$PAGE->set_context($systemcontext);
 $PAGE->set_heading(get_string('edit_alias','local_alias'));
 $PAGE->set_title(get_string('edit_alias','local_alias'));
 
