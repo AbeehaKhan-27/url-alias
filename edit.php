@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__ . 'config.php');
+require_once(__DIR__ . '/setup/config.php');
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/manage_aliases.php');
 require_once($CFG->dirroot . '/local/xampp/htdocs/friendly_url/classes/edit.php');
 
