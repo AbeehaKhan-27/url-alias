@@ -66,4 +66,11 @@ $templatecontext = [
     'delete_button' => get_string('delete_button','local_alias'),
     "form" => $mform->render(),
 ];
+
+echo $OUTPUT->render_from_template('local_alias/manage', $templatecontext);
+if (isset($urls['pages']) && $urls['count'] > $perpage) {
+    $baseurl = new moodle_url('/local/alias/manage.php', ['page' => $currpage, 'q' => $query]);
+    echo $OUTPUT->paging_bar($urls['count'], $currpage, $perpage, $baseurl);
+}
+echo $OUTPUT->footer();
 ?>
