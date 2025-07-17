@@ -36,7 +36,7 @@ require_once($CFG->dirroot.'/local/alias/classes/manage_aliases.php');
 class friendly_url_external extends external_api {
     /**
      * Parameters for delete_alias
-     * @return external_function_parameter
+     * @return external_function_parameters
      */
     public static function delete_alias_parameters() {
         return new external_function_parameters(
@@ -51,6 +51,17 @@ class friendly_url_external extends external_api {
      * @throws invalid_parameter_exception
      */
     public static function delete_alias(int $aliasid): string {
+        $params = self::validate_parameters(self::delete_alias_parameters(), ['aliasid'=> $aliasid]);
+        $manager = new alias_manager();
+        return $manager->delete_alias($aliasid);
+    }
+
+    /** 
+     * Return for delete_alias
+     * @return external_value
+     */
+    public static function delete_alias_returns() {
+        return new external_value(PARAM_BOOL, 'URL successfuly deleted - True. ');
     }
 
 }
