@@ -39,9 +39,9 @@ class friendly_url_external extends external_api {
      * @return external_function_parameters
      */
     public static function delete_alias_parameters() {
-        return new external_function_parameters(
-            ['aliasid' => new external_value(PARAM_INT, 'id of alias')]
-        );
+        return new external_function_parameters([
+            'aliasid' => new external_value(PARAM_INT, 'id of alias')
+        ]);
     }
 
     /**
