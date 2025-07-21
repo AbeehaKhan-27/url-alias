@@ -24,7 +24,7 @@
 
 require_once(__DIR__ . '/setup/config.php');
 require_once($CFG->dirroot . 'C:\xampp\htdocs\friendly_url\classes\manage_aliases.php');
-require_once($CFG->dirroot . 'C:\xampp\htdocs\friendly_url\classes\edit.php');
+require_once($CFG->dirroot . 'C:\xampp\htdocs\friendly_url\classes\edit_form.php');
 
 $PAGE->set_url(new moodle_url('/local/alias/edit.php'));
 require_login();

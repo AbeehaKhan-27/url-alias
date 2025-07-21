@@ -15,10 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin functions for the friendly_url plugin.
+ * Version for the friendly_url plugin.
  *
  * @package   friendly_url 
  * @copyright 2025, Abeeha Khan 
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined ('MOODLE_INTERNAL') || die ();
+
+$plugin->component = 'local_friendly_url';
+$plugin->version = 2025072100;
+$plugin->requires = 2022041900.00;
 ?>
