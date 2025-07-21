@@ -24,7 +24,7 @@
 
 defined ('MOODLE_INTERNAL') || die ();
 
-$plugin->component = 'local_friendly_url';
+$plugin->component = 'local_alias';
 $plugin->version = 2025072100;
 $plugin->requires = 2022041900.00;
 ?>

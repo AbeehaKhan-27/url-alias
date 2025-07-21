@@ -45,7 +45,7 @@ $string ['err_friendly'] = 'This friendly URL is already taken';
 $string ['query_keyword'] = 'URL filter:';
 $string ['filter_button'] = 'Filter';
 $string ['create_button'] = 'Create URL';
-$string ['Edit_button'] = 'Edit URL';
-$string ['Delete_button'] = 'Delete URL';
+$string ['edit_button'] = 'Edit URL';
+$string ['delete_button'] = 'Delete URL';
 $string ['URL_not_found'] = 'URL not found.';
 ?>

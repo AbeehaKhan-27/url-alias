@@ -1,0 +1,44 @@
+<h1> Site alias </h1>
+{{{form}}}
+{{empty}}
+    <div>
+    <h2 class="text-center ">{{URL_not_found}}</h2>
+    </div?>
+{{/empty}}
+{{^empty}}
+<div class="table-responsive py-2">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Friendly</th>
+            <th scope="col">Destination</th>
+            <th scope="col">*</th>
+            <th scope="col">*</th>
+        </tr>
+        </thead>
+            {{#urls}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><a href="{{friendly}}">{{friendly}}</a></td>
+                    <td><a href="{{destination}}">{{destination}}</a></td>
+                    <td>
+                        <input type="button"
+                                class="btn btn-primary"
+                                value="{{edit_button}}"
+                                onclick="location.href='{{editurl}}?aliasid={{id}}'"
+                        />
+                    </td>
+                    <td>
+                        <input type="button"
+                                class="local_aliasid{{id}} btn btn-danger local_alias_delete_button"
+                                value="{{delete_button}}"
+                        />
+                    </td>
+                </tr>
+            {{/urls}}
+    </table>
+</div>
+{{/empty}}
+<hr/>
+<input type="button" class="btn btn-primary" value="{{create_button}}" onclick="location.href='{{editurl}}'"/>
