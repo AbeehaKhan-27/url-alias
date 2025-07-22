@@ -15,13 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Manages the aliases. 
+ * Manages the aliases.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class manage_aliases {
     /** Inserts the URLs into the database.
      * @param string $friendlyurl
@@ -43,7 +42,7 @@ class manage_aliases {
     /** Gets the URLs.
      * @param int $currentpage
      * @param string $query
-     * @return array of URLs 
+     * @return array of URLs
      * @throws dml_exception
      */
     public function get_alias(int $currpage, string $query): array {
@@ -51,24 +50,25 @@ class manage_aliases {
         $totalpages = 3;
         $page = $currpage ?? 0;
         $select = strlen(string: $query) != 0 ?
-            $DB->sql_like('friendly',':friendly')
-            :'';
-        $params = ['friendly'=> '%'.$DB->sql_like_escape($query).'%', ];
+            $DB->sql_like('friendly', ':friendly')
+            : '';
+        $params = ['friendly' => '%'.$DB->sql_like_escape($query).'%',
+            ];
         $count = $DB->count_records_select('alias', $select, $params);
         try {
             $aliases = $DB->get_records_select(
-                'alias', 
-                $select, 
-                $params, 
-                'id', 
-                '*', 
-                $totalpages * $page, 
+                'alias',
+                $select,
+                $params,
+                'id',
+                '*',
+                $totalpages * $page,
                 $totalpages);
             return [
-                'aliases'=> array_values(array: $aliases),
-                'page'=> $page,
-                'pages'=> ceil(num: $count / $totalpages),
-                'count'=> $count,
+                'aliases' => array_values(array: $aliases),
+                'page' => $page,
+                'pages' => ceil(num: $count / $totalpages),
+                'count' => $count,
             ];
         } catch (dml_exception $e) {
             return [];
@@ -81,7 +81,7 @@ class manage_aliases {
      */
     public function get_alias_by_url(int $aliasid): mixed {
         global $DB;
-            return $DB->get_record('alias', ['id'=> $aliasid]);
+            return $DB->get_record('alias', ['id' => $aliasid]);
     }
 
     /** Updates details for a single URL.
@@ -90,7 +90,7 @@ class manage_aliases {
      * @param string $destinationurl the new destination url.
      * @return bool the url data or false if not found.
      */
-     public function update_alias(int $oldurl, string $friendlyurl, string $destinationurl): bool {
+    public function update_alias(int $oldurl, string $friendlyurl, string $destinationurl): bool {
         global $DB;
         $update = new stdClass();
         $update->id = $oldurl;
@@ -112,4 +112,3 @@ class manage_aliases {
         return $DB->delete_records('alias', ['id' => $aliasid]);
     }
 }
-?>

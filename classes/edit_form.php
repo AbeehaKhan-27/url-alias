@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Edits the aliases. 
+ * Edits the aliases.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined (constant_name:'MOODLE_INTERNAL') || die();
-require_once("$CFG->libdir/formsib.php");
+defined ('MOODLE_INTERNAL') || die();
+require_once("$CFG->libdir/formslib.php");
 
 /**
- * Edits the aliases. 
+ * Edits the aliases.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class edit extends moodleform {
@@ -45,16 +45,15 @@ class edit extends moodleform {
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
 
-        $mform->addElement('text','friendly', get_string('friendly_url','local_alias'));
+        $mform->addElement('text', 'friendly', get_string('friendly_url', 'local_alias'));
         $mform->setType('friendly', PARAM_NOTAGS);
 
-        $mform->addElement('text','destination', get_string('destination_url','local_alias'));
+        $mform->addElement('text', 'destination', get_string('destination_url', 'local_alias'));
         $mform->setType('destination', PARAM_NOTAGS);
 
-        $mform->addRule('friendly', get_string('err_required', 'local_alias'),'required', null,'client');
-        $mform->addRule('destination', get_string('err_required','local_alias'),'required', null, 'client');
+        $mform->addRule('friendly', get_string('err_required', 'local_alias'), 'required', null, 'client');
+        $mform->addRule('destination', get_string('err_required', 'local_alias'), 'required', null, 'client');
 
         $this->add_action_buttons();
     }
 }
-?>

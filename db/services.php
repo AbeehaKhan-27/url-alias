@@ -17,21 +17,20 @@
 /**
  * Defines the services.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') or die();
- $functions = [
-    'friendly_delete_alias'=> [
-        'classname'=> 'friendly_external',
-        'methodname'=> 'delete_alias',
-        'classpath'=> 'C:\xampp\htdocs\friendly_url\lib.php',
-        'description'=> 'Deletes an alias',
-        'type'=> 'write',
-        'ajax'=> true,
-        'capabilities'=> '',
+defined('MOODLE_INTERNAL') || die();
+$functions = [
+    'friendly_delete_alias' => [
+        'classname' => 'friendly_external',
+        'methodname' => 'delete_alias',
+        'classpath' => 'C:\xampp\htdocs\friendly_url\lib.php',
+        'description' => 'Deletes an alias',
+        'type' => 'write',
+        'ajax' => true,
+        'capabilities' => '',
     ],
 ];
-?>

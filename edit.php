@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Edits local alias page. 
+ * Edits local alias page.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -31,28 +31,28 @@ require_login();
 $systemcontext = context_system::instance();
 require_capability('local/alias:managealias', $systemcontext);
 $PAGE->set_context($systemcontext);
-$PAGE->set_heading(get_string('edit_alias','local_alias'));
-$PAGE->set_title(get_string('edit_alias','local_alias'));
+$PAGE->set_heading(get_string('edit_alias', 'local_alias'));
+$PAGE->set_title(get_string('edit_alias', 'local_alias'));
 
 $aliasid = optional_param('aliasid', null, PARAM_INT);
 $mform = new edit();
 
-if($mform->is_cancelled()) {
+if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot . '/local/alias/manage.php', get_string('cancelled_form', 'local_alias'));
 }
-elseif ($fromform = $mform->get_data()) {
-    $manager = new $alias_manger();
+else if ($fromform = $mform->get_data()) {
+    $manager = new manage_aliases();
     if ($fromform->id) {
         $manager->update_alias($fromform->id, $fromform->friendly, $fromform->destination);
-        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('updated_form','local_alias'));
+        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('updated_form', 'local_alias'));
     } else {
         $manager->create_alias(friendlyurl: $fromform->friendly, destinationurl: $fromform->destination);
-        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('created_form','local_alias'));
+        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('created_form', 'local_alias'));
     }
 }
 
 if ($aliasid) {
-    $manager = new $alias_manger();
+    $manager = new manage_aliases();
     $alias = $manager->get_alias_by_id(aliasid: $aliasid);
     $mform->set_data($alias);
     if (!$alias) {
@@ -63,4 +63,3 @@ if ($aliasid) {
 echo $OUTPUT->header();
 $mform->display();
 echo $OUTPUT->footer();
-?>

@@ -15,23 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the capabilities. 
+ * Defines the capabilities.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') or die();
+defined('MOODLE_INTERNAL') || die();
 $capabilities = [
-    'local/alias:managealias'=> [
-        'riskbitmask'=> RISK_SPAM | RISK_PERSONAL | RISK_XSS,
-        'captype'=> 'write',
-        'contextlevel'=> CONTEXT_SYSTEM,
-        'archetypes'=> [
-            'manager'=> CAP_ALLOW
+    'local/alias:managealias' => [
+        'riskbitmask' => RISK_SPAM | RISK_PERSONAL | RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'manager' => CAP_ALLOW
         ],
     ],
 ];
-
-?>

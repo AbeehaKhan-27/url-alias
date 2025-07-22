@@ -15,24 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Library for the database. 
+ * Library for the database.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined ('MOODLE_INTERNAL') or die ();
+defined ('MOODLE_INTERNAL') || die ();
 require_once($CFG->dirroot.'/local/alias/classes/manage_aliases.php');
 
 /**
- * Library for the database. 
+ * Library for the database.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class friendly_url_external extends external_api {
     /**
      * Parameters for delete_alias
@@ -40,8 +39,8 @@ class friendly_url_external extends external_api {
      */
     public static function delete_alias_parameters() {
         return new external_function_parameters([
-            'aliasid' => new external_value(PARAM_INT, 'id of alias')
-        ]);
+            'aliasid' => new external_value(PARAM_INT, 'id of alias')]
+        );
     }
 
     /**
@@ -51,12 +50,12 @@ class friendly_url_external extends external_api {
      * @throws invalid_parameter_exception
      */
     public static function delete_alias(int $aliasid): string {
-        $params = self::validate_parameters(self::delete_alias_parameters(), ['aliasid'=> $aliasid]);
+        $params = self::validate_parameters(self::delete_alias_parameters(), ['aliasid' => $aliasid]);
         $manager = new alias_manager();
         return $manager->delete_alias($aliasid);
     }
 
-    /** 
+    /**
      * Return for delete_alias
      * @return external_value
      */
@@ -65,4 +64,3 @@ class friendly_url_external extends external_api {
     }
 
 }
-?>

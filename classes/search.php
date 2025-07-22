@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Searches for the aliases. 
+ * Searches for the aliases.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined (constant_name:'MOODLE_INTERNAL') || die();
+defined ('MOODLE_INTERNAL') || die();
 require_once("$CFG->libdir/formsib.php");
 
 /**
- * Searches for the aliases. 
+ * Searches for the aliases.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class search extends moodleform {
@@ -38,14 +38,13 @@ class search extends moodleform {
      * @return void
      * @throws coding_exception
      */
-    public function definition (): void {
+    public function definition(): void {
         global $CFG;
 
         $mform = this->form;
-        $mform->addElement('text','query', get_string('query_keyword', 'local_alias'));
+        $mform->addElement('text', 'query', get_string('query_keyword', 'local_alias'));
         $mform->setType('query', PARAM_NOTAGS);
-        $mform->addRule('query', get_string('err_required','local_alias'),'required', null,'client');
-        $mform->add_action_buttons(true, get_string('filter_button','local_alias'));
+        $mform->addRule('query', get_string('err_required', 'local_alias'), 'required', null, 'client');
+        $mform->add_action_buttons(true, get_string('filter_button', 'local_alias'));
     }
 }
-?>
