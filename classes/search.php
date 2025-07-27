@@ -23,7 +23,7 @@
  */
 
 defined ('MOODLE_INTERNAL') || die();
-require_once("$CFG->libdir/formsib.php");
+require_once("$CFG->libdir/formslib.php");
 
 /**
  * Searches for the aliases.
@@ -41,10 +41,10 @@ class search extends moodleform {
     public function definition(): void {
         global $CFG;
 
-        $mform = this->form;
-        $mform->addElement('text', 'query', get_string('query_keyword', 'local_alias'));
+        $mform = $this->_form;
+        $mform->addElement('text', 'query', get_string('query_keyword', 'local_friendly_url'));
         $mform->setType('query', PARAM_NOTAGS);
-        $mform->addRule('query', get_string('err_required', 'local_alias'), 'required', null, 'client');
-        $mform->add_action_buttons(true, get_string('filter_button', 'local_alias'));
+        $mform->addRule('query', get_string('err_required', 'local_friendly_url'), 'required', null, 'client');
+        $this->add_action_buttons(true, get_string('filter_button', 'local_friendly_url'));
     }
 }

@@ -51,7 +51,7 @@ class friendly_url_external extends external_api {
      */
     public static function delete_alias(int $aliasid): string {
         $params = self::validate_parameters(self::delete_alias_parameters(), ['aliasid' => $aliasid]);
-        $manager = new alias_manager();
+        $manager = new manage_aliases();
         return $manager->delete_alias($aliasid);
     }
 

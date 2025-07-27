@@ -23,8 +23,8 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-$capabilities = [
-    'local/alias:managealias' => [
+$capabilities = array (
+    'local/friendly_url:managealias' => [
         'riskbitmask' => RISK_SPAM | RISK_PERSONAL | RISK_XSS,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
@@ -32,4 +32,4 @@ $capabilities = [
             'manager' => CAP_ALLOW
         ],
     ],
-];
+);

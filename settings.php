@@ -16,15 +16,13 @@
 
 /**
  * Plugin settings for the friendly_url plugin.
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') or die();
-if ($siteconfig) {
-    $ADMIN->add('localplugins', new admin_externalpage('local_alias', get_string('manage_page', 'local_alias'), 
-        $CFG->wwwroot .'/local/xampp/htdoc/friendly_url/manage.php'));
+defined('MOODLE_INTERNAL') || die();
+if ($hassiteconfig) {
+    $ADMIN->add('localplugins', new admin_externalpage('local_friendly_url', get_string('manage_page', 'local_friendly_url'),
+        $CFG->wwwroot .'\local\friendly_url\manage.php'));
 }
-
-?>

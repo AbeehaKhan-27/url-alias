@@ -17,8 +17,8 @@
 /**
  * Unit tests for the manage_aliases class.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,8 +30,8 @@ require_once($CFG->dirroot .'C:\xampp\htdocs\friendly_url\classes\manage_aliases
 /**
  * Unit tests for the manage_aliases class.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class friendly_url_manager_test extends advanced_testcase {
@@ -39,7 +39,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can create an alias.
      * @return void
      */
-    public function create_alias_test(){
+    public function create_alias_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -62,7 +62,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can update an alias.
      * @return void
      */
-    public function update_alias_test(){
+    public function update_alias_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -82,7 +82,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can delete an alias.
      * @return void
      */
-    public function delete_alias_test(){
+    public function delete_alias_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -103,7 +103,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can get an alias by id.
      * @return void
      */
-    public function get_alias_by_id_test(){
+    public function get_alias_by_id_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -122,7 +122,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can search for an alias.
      * @return void
      */
-    public function search_alias_test(){
+    public function search_alias_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -141,7 +141,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can get an alias with pagination.
      * @return void
      */
-    public function pagination_alias_test(){
+    public function pagination_alias_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -185,7 +185,7 @@ class friendly_url_manager_test extends advanced_testcase {
      * Test that we can search for an alias with pagination.
      * @return void
      */
-    public function search_pagination_alias_test(){
+    public function search_pagination_alias_test() {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -225,4 +225,3 @@ class friendly_url_manager_test extends advanced_testcase {
         $this->assertEquals('http://localhost/course.php?id=7', $aliasespage2['aliases'][0]->destination);
     }
 }
-?>

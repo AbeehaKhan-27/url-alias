@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-  <XMLDB PATH="C:\xampp\htdocs\friendly_url\db" VERSION="20250721" COMMENT="XMLDB file for Moodle friendly_url plugin">
+  <XMLDB PATH="local\friendly_url\db" VERSION="20250721" COMMENT="XMLDB file for Moodle friendly_url plugin">
     <TABLES>
       <TABLE NAME="alias" COMMENT="each record is an alias">
         <FIELDS>

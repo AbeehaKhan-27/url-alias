@@ -22,32 +22,31 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__ . '/setup/config.php');
-require_once($CFG->dirroot . 'C:\xampp\htdocs\friendly_url\classes\manage_aliases.php');
-require_once($CFG->dirroot . 'C:\xampp\htdocs\friendly_url\classes\edit_form.php');
+require_once(__DIR__ . '/../../config.php');
+require_once($CFG->dirroot . '\local\friendly_url\classes\manage_aliases.php');
+require_once($CFG->dirroot . '\local\friendly_url\classes\edit_form.php');
 
-$PAGE->set_url(new moodle_url('/local/alias/edit.php'));
+$PAGE->set_url(new moodle_url('/local/friendly_url/edit.php'));
 require_login();
 $systemcontext = context_system::instance();
-require_capability('local/alias:managealias', $systemcontext);
+require_capability('local/friendly_url:managealias', $systemcontext);
 $PAGE->set_context($systemcontext);
-$PAGE->set_heading(get_string('edit_alias', 'local_alias'));
-$PAGE->set_title(get_string('edit_alias', 'local_alias'));
+$PAGE->set_heading(get_string('edit_alias', 'local_friendly_url'));
+$PAGE->set_title(get_string('edit_alias', 'local_friendly_url'));
 
 $aliasid = optional_param('aliasid', null, PARAM_INT);
 $mform = new edit();
 
 if ($mform->is_cancelled()) {
-    redirect($CFG->wwwroot . '/local/alias/manage.php', get_string('cancelled_form', 'local_alias'));
-}
-else if ($fromform = $mform->get_data()) {
+    redirect($CFG->wwwroot . '/local/alias/manage.php', get_string('cancelled_form', 'local_friendly_url'));
+} else if ($fromform = $mform->get_data()) {
     $manager = new manage_aliases();
     if ($fromform->id) {
         $manager->update_alias($fromform->id, $fromform->friendly, $fromform->destination);
-        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('updated_form', 'local_alias'));
+        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('updated_form', 'local_friendly_url'));
     } else {
         $manager->create_alias(friendlyurl: $fromform->friendly, destinationurl: $fromform->destination);
-        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('created_form', 'local_alias'));
+        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('created_form', 'local_friendly_url'));
     }
 }
 
@@ -56,7 +55,7 @@ if ($aliasid) {
     $alias = $manager->get_alias_by_id(aliasid: $aliasid);
     $mform->set_data($alias);
     if (!$alias) {
-        throw new invalid_parameter_exception(get_string('err_invalid', 'local_alias'));
+        throw new invalid_parameter_exception(get_string('err_invalid', 'local_friendly_url'));
     }
 }
 

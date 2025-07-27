@@ -1,4 +1,4 @@
-@local_alias @javascript
+@local_friendly_url @javascript
 Feature: Manage aliases
 
   Background:

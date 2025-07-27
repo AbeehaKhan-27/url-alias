@@ -16,7 +16,7 @@
 /**
  * Javasecript for the action column.
  *
- * @module   friendly_url 
+ * @module   friendly_url
  */
 
 define(['jquery', 'core/modal_factory', 'core/str', 'core/modal_events', 'core/ajax', 'core/notification'], function($,
@@ -29,14 +29,14 @@ define(['jquery', 'core/modal_factory', 'core/str', 'core/modal_events', 'core/a
     var trigger = $('.local_alias_delete_button');
     ModalFactory.create({
         type: ModalFactory.types.SAVE_CANCEL,
-        title: String.get_string('delete_alias_title', 'local_alias'),
-        body: String.get_string('delete_alias', 'local_alias'),
+        title: String.get_string('delete_alias_title', 'local_friendly_url'),
+        body: String.get_string('delete_alias', 'local_friendly_url'),
         preShowCallback: function(triggerElement, modal) {
             triggerElement = $(triggerElement);
             let classString = triggerElement[0].classList[0];
             let aliasid = classString.substr(classString.lastIndexOf('local_aliasid') + 'local_aliasid'.length);
             modal.params = {'aliasid': aliasid};
-            modal.setSaveButtonText(String.get_string('delete_alias_button', 'local_alias'));
+            modal.setSaveButtonText(String.get_string('delete_alias_button', 'local_friendly_url'));
         },
         large: true
     }, trigger)
@@ -48,7 +48,7 @@ define(['jquery', 'core/modal_factory', 'core/str', 'core/modal_events', 'core/a
                 let spinner = M.util.add_spinner(Y, footer);
                 spinner.show();
                 let request = {
-                    methodname: 'local_alias_delete_alias',
+                    methodname: 'local_friendly_url_delete_alias',
                     args: modal.params,
                 };
                 Ajax.call([request])[0].done(function(data) {
@@ -57,7 +57,7 @@ define(['jquery', 'core/modal_factory', 'core/str', 'core/modal_events', 'core/a
                         window.location.reload();
                     } else {
                         Notification.addNotification({
-                            message: String.get_string('err_delete_alias_failed', 'local_alias'),
+                            message: String.get_string('err_delete_alias_failed', 'local_friendly_url'),
                             type: 'error'
                         });
                     }

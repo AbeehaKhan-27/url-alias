@@ -17,14 +17,13 @@
 /**
  * Version for the friendly_url plugin.
  *
- * @package   friendly_url 
- * @copyright 2025, Abeeha Khan 
+ * @package   friendly_url
+ * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined ('MOODLE_INTERNAL') || die ();
 
-$plugin->component = 'local_alias';
-$plugin->version = 2025072100;
+$plugin->component = 'local_friendly_url';
+$plugin->version = 2025072304;
 $plugin->requires = 2022041900.00;
-?>

@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for the local_alias.
+ * Strings for the local_friendly_url.
  *
  * @package   friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Friendly URLs';
+$string['pluginname'] = 'Friendly';
 $string['manage_page'] = 'Manage page';
 $string['enter_friendly_url'] = 'Enter the friendly URL';
 $string['enter_destination_url'] = 'Enter the destination URL';

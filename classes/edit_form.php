@@ -45,14 +45,14 @@ class edit extends moodleform {
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
 
-        $mform->addElement('text', 'friendly', get_string('friendly_url', 'local_alias'));
+        $mform->addElement('text', 'friendly', get_string('friendly_url', 'local_friendly_url'));
         $mform->setType('friendly', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'destination', get_string('destination_url', 'local_alias'));
+        $mform->addElement('text', 'destination', get_string('destination_url', 'local_friendly_url'));
         $mform->setType('destination', PARAM_NOTAGS);
 
-        $mform->addRule('friendly', get_string('err_required', 'local_alias'), 'required', null, 'client');
-        $mform->addRule('destination', get_string('err_required', 'local_alias'), 'required', null, 'client');
+        $mform->addRule('friendly', get_string('err_required', 'local_friendly_url'), 'required', null, 'client');
+        $mform->addRule('destination', get_string('err_required', 'local_friendly_url'), 'required', null, 'client');
 
         $this->add_action_buttons();
     }
