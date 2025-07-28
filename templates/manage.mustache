@@ -13,15 +13,15 @@
             <th scope="col">ID</th>
             <th scope="col">Friendly</th>
             <th scope="col">Destination</th>
-            <th scope="col">*</th>
-            <th scope="col">*</th>
+            <th scope="col">Actions</th>
+            <th scope="col"></th>
         </tr>
         </thead>
             {{#urls}}
                 <tr>
                     <td>{{id}}</td>
                     <td><a href="{{friendly}}">{{friendly}}</a></td>
-                    <td><a href="{{destination}}">{{destination}}</a></td>
+                    <td><a href="{{destinationurl}}">{{destinationurl}}</a></td>
                     <td>
                         <input type="button"
                                 class="btn btn-primary"

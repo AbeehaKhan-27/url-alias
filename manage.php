@@ -52,7 +52,18 @@ if ($query !== '') {
     $mform->set_data(['query' => $query]);
 }
 
-$urls = $manager->get_alias($currpage, $query);
+$urls['aliases'] = [
+    [
+        'id' => 1,
+        'friendly' => 'http://localhost/fakefriendly',
+        'destination' => 'http://localhost/fakedestination',
+        'editurl' => new moodle_url('/local/friendly_url/edit.php'),
+        // You might need to add buttons here if your template uses them inside each URL item:
+        'edit_button' => get_string('edit_button', 'local_friendly_url'),
+        'delete_button' => get_string('delete_button', 'local_friendly_url'),
+    ]
+];
+//$urls = $manager->get_alias($currpage, $query);
 echo $OUTPUT->header();
 
 $templatecontext = [
@@ -66,7 +77,7 @@ $templatecontext = [
     "form" => $mform->render(),
 ];
 
-echo $OUTPUT->render_from_template('local_friendly_url/template', $templatecontext);
+echo $OUTPUT->render_from_template('local_friendly_url/manage', $templatecontext);
 if (isset($urls['pages']) && $urls['count'] > $perpage) {
     $baseurl = new moodle_url('/local/friendly_url/manage.php', ['page' => $currpage, 'q' => $query]);
     echo $OUTPUT->paging_bar($urls['count'], $currpage, $perpage, $baseurl);

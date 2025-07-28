@@ -55,7 +55,7 @@ class friendly_url_manager_test extends advanced_testcase {
         $alias = array_pop($aliases['aliases']);
 
         $this->assertEquals('http://localhost/frontendmasters', $alias->friendly);
-        $this->assertEquals('http://localhost/course.php?id=99', $alias->destination);
+        $this->assertEquals('http://localhost/course.php?id=99', $alias->destinationurl);
     }
 
     /**
@@ -75,7 +75,7 @@ class friendly_url_manager_test extends advanced_testcase {
         $updatedalias = $manager->get_alias_by_id($alias->id);
 
         $this->assertEquals('http://localhost/editedalias', $alias->friendly);
-        $this->assertEquals('http://localhost/course.php?id=999', $alias->destination);
+        $this->assertEquals('http://localhost/course.php?id=999', $alias->destinationurl);
     }
 
     /**
@@ -115,7 +115,7 @@ class friendly_url_manager_test extends advanced_testcase {
         $result = $manager->get_alias_by_id($alias->id);
 
         $this->assertEquals('http://localhost/frontendmasters', $result->friendly);
-        $this->assertEquals('http://localhost/course.php?id=99', $result->destination);
+        $this->assertEquals('http://localhost/course.php?id=99', $result->destinationurl);
     }
 
     /**
@@ -134,7 +134,7 @@ class friendly_url_manager_test extends advanced_testcase {
         $alias = array_pop($aliases['aliases']);
 
         $this->assertEquals('http://localhost/frontendmasters', $alias->friendly);
-        $this->assertEquals('http://localhost/course.php?id=99', $alias->destination);
+        $this->assertEquals('http://localhost/course.php?id=99', $alias->destinationurl);
     }
 
     /**
@@ -172,13 +172,13 @@ class friendly_url_manager_test extends advanced_testcase {
         $this->assertEquals(7, $aliasespage2['count']);
 
         $this->assertEquals('http://localhost/1', $aliasespage0['aliases'][0]->friendly);
-        $this->assertEquals('http://localhost/course.php?id=1', $aliasespage0['aliases'][0]->destination);
+        $this->assertEquals('http://localhost/course.php?id=1', $aliasespage0['aliases'][0]->destinationurl);
 
         $this->assertEquals('http://localhost/4', $aliasespage1['aliases'][0]->friendly);
-        $this->assertEquals('http://localhost/course.php?id=4', $aliasespage1['aliases'][0]->destination);
+        $this->assertEquals('http://localhost/course.php?id=4', $aliasespage1['aliases'][0]->destinationurl);
 
         $this->assertEquals('http://localhost/7', $aliasespage2['aliases'][0]->friendly);
-        $this->assertEquals('http://localhost/course.php?id=7', $aliasespage2['aliases'][0]->destination);
+        $this->assertEquals('http://localhost/course.php?id=7', $aliasespage2['aliases'][0]->destinationurl);
     }
 
     /**
@@ -216,12 +216,12 @@ class friendly_url_manager_test extends advanced_testcase {
         $this->assertEquals(7, $aliasespage2['count']);
 
         $this->assertEquals('http://localhost/esaka1', $aliasespage0['aliases'][0]->friendly);
-        $this->assertEquals('http://localhost/course.php?id=1', $aliasespage0['aliases'][0]->destination);
+        $this->assertEquals('http://localhost/course.php?id=1', $aliasespage0['aliases'][0]->destinationurl);
 
         $this->assertEquals('http://localhost/esaka4', $aliasespage1['aliases'][0]->friendly);
-        $this->assertEquals('http://localhost/course.php?id=4', $aliasespage1['aliases'][0]->destination);
+        $this->assertEquals('http://localhost/course.php?id=4', $aliasespage1['aliases'][0]->destinationurl);
 
         $this->assertEquals('http://localhost/esaka7', $aliasespage2['aliases'][0]->friendly);
-        $this->assertEquals('http://localhost/course.php?id=7', $aliasespage2['aliases'][0]->destination);
+        $this->assertEquals('http://localhost/course.php?id=7', $aliasespage2['aliases'][0]->destinationurl);
     }
 }

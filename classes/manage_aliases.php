@@ -31,7 +31,7 @@ class manage_aliases {
         global $DB;
         $insert = new stdClass();
         $insert->friendly = $friendlyurl;
-        $insert->destinationurl = $destinationurl;
+        $insert->destination = $destinationurl;
         try {
             return $DB->insert_record('alias', $insert, false);
         } catch (dml_exception $e) {
@@ -49,7 +49,7 @@ class manage_aliases {
         global $DB;
         $totalpages = 3;
         $page = $currpage ?? 0;
-        $select = strlen(string: $query) != 0 ?
+        $select = strlen($query) != 0 ?
             $DB->sql_like('friendly', ':friendly')
             : '';
         $params = ['friendly' => '%'.$DB->sql_like_escape($query).'%',
@@ -65,9 +65,9 @@ class manage_aliases {
                 $totalpages * $page,
                 $totalpages);
             return [
-                'aliases' => array_values(array: $aliases),
+                'aliases' => array_values($aliases),
                 'page' => $page,
-                'pages' => ceil(num: $count / $totalpages),
+                'pages' => ceil($count / $totalpages),
                 'count' => $count,
             ];
         } catch (dml_exception $e) {
@@ -79,7 +79,7 @@ class manage_aliases {
      * @param int $aliasid the record we're trying to get
      * @return object|false record data or false if not found.
      */
-    public function get_alias_by_url(int $aliasid): mixed {
+    public function get_alias_by_url(int $aliasid) {
         global $DB;
             return $DB->get_record('alias', ['id' => $aliasid]);
     }
@@ -95,7 +95,7 @@ class manage_aliases {
         $update = new stdClass();
         $update->id = $oldurl;
         $update->friendly = $friendlyurl;
-        $update->destinationurl = $destinationurl;
+        $update->destination = $destinationurl;
         try {
             return $DB->update_record('alias', $update);
         } catch (dml_exception $e) {
@@ -107,7 +107,7 @@ class manage_aliases {
      * @param  int $aliasid the alias we're trying to delete.
      * @return bool true if success
      */
-    public function delete_alias(int $aliasid): bool {
+    public function delete_alias(int $aliasid) {
         global $DB;
         return $DB->delete_records('alias', ['id' => $aliasid]);
     }

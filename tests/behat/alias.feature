@@ -7,22 +7,22 @@ Feature: Manage aliases
 
     And I press "Create url"
     And I set the field "friendly" to "http://localhost/1"
-    And I set the field "destination" to "http://localhost/course.php?id=1"
+    And I set the field "destinationurl" to "http://localhost/course.php?id=1"
     And I press "Save changes"
 
     And I press "Create url"
     And I set the field "friendly" to "http://localhost/2"
-    And I set the field "destination" to "http://localhost/course.php?id=2"
+    And I set the field "destinationurl" to "http://localhost/course.php?id=2"
     And I press "Save changes"
 
     And I press "Create url"
     And I set the field "friendly" to "http://localhost/3"
-    And I set the field "destination" to "http://localhost/course.php?id=3"
+    And I set the field "destinationurl" to "http://localhost/course.php?id=3"
     And I press "Save changes"
 
     And I press "Create url"
     And I set the field "friendly" to "http://localhost/4"
-    And I set the field "destination" to "http://localhost/course.php?id=4"
+    And I set the field "destinationurl" to "http://localhost/course.php?id=4"
     And I press "Save changes"
 
   @javascript
@@ -32,7 +32,7 @@ Feature: Manage aliases
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
     And I press "Edit url"
     And I set the field "friendly" to "http://localhost/edited"
-    And I set the field "destination" to "http://localhost/course.php?id=999"
+    And I set the field "destinationurl" to "http://localhost/course.php?id=999"
     And I press "Save changes"
     And I should see "http://localhost/course.php?id=999" in the "http://localhost/edited" "table_row"
     And I log out

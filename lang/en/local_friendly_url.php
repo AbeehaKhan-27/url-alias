@@ -47,4 +47,4 @@ $string['filter_button'] = 'Filter';
 $string['create_button'] = 'Create URL';
 $string['edit_button'] = 'Edit URL';
 $string['delete_button'] = 'Delete URL';
-$string['URL_not_found'] = 'URL not found.';
+$string['URL_not_found'] = 'Filter not found';

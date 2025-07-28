@@ -24,10 +24,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 $functions = [
-    'friendly_delete_alias' => [
-        'classname' => 'friendly_external',
+    'local_friendly_url_delete_alias' => [
+        'classname' => 'friendly_url_external',
         'methodname' => 'delete_alias',
-        'classpath' => 'C:\xampp\htdocs\friendly_url\lib.php',
+        'classpath' => 'local/friendly_url/extlib.php',
         'description' => 'Deletes an alias',
         'type' => 'write',
         'ajax' => true,

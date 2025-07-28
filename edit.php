@@ -38,21 +38,21 @@ $aliasid = optional_param('aliasid', null, PARAM_INT);
 $mform = new edit();
 
 if ($mform->is_cancelled()) {
-    redirect($CFG->wwwroot . '/local/alias/manage.php', get_string('cancelled_form', 'local_friendly_url'));
+    redirect($CFG->wwwroot . '/local/friendly_url/manage.php', get_string('cancelled_edit_form', 'local_friendly_url'));
 } else if ($fromform = $mform->get_data()) {
     $manager = new manage_aliases();
     if ($fromform->id) {
-        $manager->update_alias($fromform->id, $fromform->friendly, $fromform->destination);
-        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('updated_form', 'local_friendly_url'));
+        $manager->update_alias($fromform->id, $fromform->friendly, $fromform->destinationurl);
+        redirect($CFG->wwwroot .'/local/friendly_url/manage.php', get_string('update_form', 'local_friendly_url'));
     } else {
-        $manager->create_alias(friendlyurl: $fromform->friendly, destinationurl: $fromform->destination);
-        redirect($CFG->wwwroot .'/local/alias/manage.php', get_string('created_form', 'local_friendly_url'));
+        $manager->create_alias($fromform->friendly, $fromform->destinationurl);
+        redirect($CFG->wwwroot .'/local/friendly_url/manage.php', get_string('create_form', 'local_friendly_url'));
     }
 }
 
 if ($aliasid) {
     $manager = new manage_aliases();
-    $alias = $manager->get_alias_by_id(aliasid: $aliasid);
+    $alias = $manager->get_alias_by_url($aliasid);
     $mform->set_data($alias);
     if (!$alias) {
         throw new invalid_parameter_exception(get_string('err_invalid', 'local_friendly_url'));

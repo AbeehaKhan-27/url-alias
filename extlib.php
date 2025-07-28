@@ -23,7 +23,9 @@
  */
 
 defined ('MOODLE_INTERNAL') || die ();
-require_once($CFG->dirroot.'/local/alias/classes/manage_aliases.php');
+global $CFG;
+require_once($CFG->libdir . '/externallib.php');
+require_once($CFG->dirroot.'/local/friendly_url/classes/manage_aliases.php');
 
 /**
  * Library for the database.
@@ -46,10 +48,10 @@ class friendly_url_external extends external_api {
     /**
      * Delete URL external function
      * @param int $aliasid
-     * @return string
+     * @return bool
      * @throws invalid_parameter_exception
      */
-    public static function delete_alias(int $aliasid): string {
+    public static function delete_alias(int $aliasid) {
         $params = self::validate_parameters(self::delete_alias_parameters(), ['aliasid' => $aliasid]);
         $manager = new manage_aliases();
         return $manager->delete_alias($aliasid);

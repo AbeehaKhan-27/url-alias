@@ -5,7 +5,7 @@
         <FIELDS>
           <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
           <FIELD NAME="friendly" TYPE="text" NOTNULL="true" SEQUENCE="false" />
-          <FIELD NAME="destination" TYPE="text" NOTNULL="true" SEQUENCE="false" />
+          <FIELD NAME="destinationurl" TYPE="text" NOTNULL="true" SEQUENCE="false" />
         </FIELDS>
         <KEYS>
           <KEY NAME="primary" TYPE="primary" FIELDS="id" />
