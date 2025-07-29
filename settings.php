@@ -16,7 +16,7 @@
 
 /**
  * Plugin settings for the friendly_url plugin.
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

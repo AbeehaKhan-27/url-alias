@@ -17,12 +17,14 @@
 /**
  * Manages the aliases.
  *
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class manage_aliases {
-    /** Inserts the URLs into the database.
+    /**
+     * Inserts the URLs into the database.
+     *
      * @param string $friendlyurl
      * @param string $destinationurl
      * @return bool true if successful
@@ -39,7 +41,9 @@ class manage_aliases {
         }
     }
 
-    /** Gets the URLs.
+    /**
+     * Gets the URLs.
+     *
      * @param int $currentpage
      * @param string $query
      * @return array of URLs
@@ -75,7 +79,9 @@ class manage_aliases {
         }
     }
 
-    /** Gets a specific URL.
+    /**
+     * Gets a specific URL.
+     *
      * @param int $aliasid the record we're trying to get
      * @return object|false record data or false if not found.
      */
@@ -84,7 +90,9 @@ class manage_aliases {
             return $DB->get_record('alias', ['id' => $aliasid]);
     }
 
-    /** Updates details for a single URL.
+    /**
+     * Updates details for a single URL.
+     *
      * @param int $oldurl the URL we're trying to update.
      * @param string $friendlyurl the new friendly url.
      * @param string $destinationurl the new destination url.
@@ -103,7 +111,9 @@ class manage_aliases {
         }
     }
 
-    /** Deletes a URL.
+    /**
+     * Deletes a URL.
+     *
      * @param  int $aliasid the alias we're trying to delete.
      * @return bool true if success
      */

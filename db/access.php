@@ -17,19 +17,19 @@
 /**
  * Defines the capabilities.
  *
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
-$capabilities = array (
+$capabilities = [
     'local/friendly_url:managealias' => [
         'riskbitmask' => RISK_SPAM | RISK_PERSONAL | RISK_XSS,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => [
-            'manager' => CAP_ALLOW
+            'manager' => CAP_ALLOW,
         ],
     ],
-);
+];

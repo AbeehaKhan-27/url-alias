@@ -17,11 +17,13 @@
 /**
  * Unit tests for the manage_aliases class.
  *
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_friendly_url;
+use advanced_testcase;
 defined ('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->dirroot .'/local/friendly_url/lib.php');
@@ -30,16 +32,17 @@ require_once($CFG->dirroot .'/local/friendly_url/classes/manage_aliases.php');
 /**
  * Unit tests for the manage_aliases class.
  *
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class friendly_url_manager_test extends advanced_testcase {
+final class friendly_url_manager_test extends advanced_testcase {
     /**
      * Test that we can create an alias.
+     * @covers \local_friendly_url\friendly_url_manager::create_alias
      * @return void
      */
-    public function create_alias_test() {
+    public function test_create_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -51,7 +54,7 @@ class friendly_url_manager_test extends advanced_testcase {
         $aliases = $manager->get_aliases(0, '');
         $this->assertNotEmpty($aliases);
 
-        $this->asserCount(1, $aliases['aliases']);
+        $this->assertCount(1, $aliases['aliases']);
         $alias = array_pop($aliases['aliases']);
 
         $this->assertEquals('http://localhost/frontendmasters', $alias->friendly);
@@ -60,9 +63,10 @@ class friendly_url_manager_test extends advanced_testcase {
 
     /**
      * Test that we can update an alias.
+     * @covers \local_friendly_url\friendly_url_manager::update_alias
      * @return void
      */
-    public function update_alias_test() {
+    public function test_update_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -80,9 +84,10 @@ class friendly_url_manager_test extends advanced_testcase {
 
     /**
      * Test that we can delete an alias.
+     * @covers \local_friendly_url\friendly_url_manager::delete_alias
      * @return void
      */
-    public function delete_alias_test() {
+    public function test_delete_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -101,9 +106,10 @@ class friendly_url_manager_test extends advanced_testcase {
 
     /**
      * Test that we can get an alias by id.
+     * @covers \local_friendly_url\friendly_url_manager::get_alias_by_id
      * @return void
      */
-    public function get_alias_by_id_test() {
+    public function test_get_alias_by_id(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -120,9 +126,10 @@ class friendly_url_manager_test extends advanced_testcase {
 
     /**
      * Test that we can search for an alias.
+     * @covers \local_friendly_url\friendly_url_manager::search_alias
      * @return void
      */
-    public function search_alias_test() {
+    public function test_search_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -139,9 +146,10 @@ class friendly_url_manager_test extends advanced_testcase {
 
     /**
      * Test that we can get an alias with pagination.
+     * @covers \local_friendly_url\friendly_url_manager::test_pagination_alias
      * @return void
      */
-    public function pagination_alias_test() {
+    public function test_pagination_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();
@@ -183,9 +191,10 @@ class friendly_url_manager_test extends advanced_testcase {
 
     /**
      * Test that we can search for an alias with pagination.
+     * @covers \local_friendly_url\friendly_url_manager::search_pagination_alias
      * @return void
      */
-    public function search_pagination_alias_test() {
+    public function test_search_pagination_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
         $manager = new friendly_url_manager();

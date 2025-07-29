@@ -17,7 +17,7 @@
 /**
  * Edits the aliases.
  *
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ require_once("$CFG->libdir/formslib.php");
 /**
  * Edits the aliases.
  *
- * @package   friendly_url
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

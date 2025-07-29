@@ -14,12 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
+/**
  * Manage page for local_friendly_url
- * @package   friendly_url
+ *
+ * @package   local_friendly_url
  * @copyright 2025, Abeeha Khan
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/friendly_url/classes/manage_aliases.php');
 require_once($CFG->dirroot . '/local/friendly_url/classes/search.php');
@@ -44,7 +46,8 @@ if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot .'/local/friendly_url/manage.php', get_string('cancelled_filter_form', 'local_friendly_url'));
 } else if ($fromform = $mform->get_data()) {
     if ($fromform->query) {
-        redirect($CFG->wwwroot . "/local/friendly_url/manage.php?q=$fromform->query", get_string('submitted_filter_form', 'local_friendly_url'));
+        redirect($CFG->wwwroot . "/local/friendly_url/manage.php?q=$fromform->query",
+            get_string('submitted_filter_form', 'local_friendly_url'));
     }
 }
 
