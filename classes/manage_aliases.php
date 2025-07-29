@@ -31,7 +31,7 @@ class manage_aliases {
         global $DB;
         $insert = new stdClass();
         $insert->friendly = $friendlyurl;
-        $insert->destination = $destinationurl;
+        $insert->destinationurl = $destinationurl;
         try {
             return $DB->insert_record('alias', $insert, false);
         } catch (dml_exception $e) {
@@ -95,7 +95,7 @@ class manage_aliases {
         $update = new stdClass();
         $update->id = $oldurl;
         $update->friendly = $friendlyurl;
-        $update->destination = $destinationurl;
+        $update->destinationurl = $destinationurl;
         try {
             return $DB->update_record('alias', $update);
         } catch (dml_exception $e) {

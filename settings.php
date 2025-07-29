@@ -24,5 +24,5 @@
 defined('MOODLE_INTERNAL') || die();
 if ($hassiteconfig) {
     $ADMIN->add('localplugins', new admin_externalpage('local_friendly_url', get_string('manage_page', 'local_friendly_url'),
-        $CFG->wwwroot .'\local\friendly_url\manage.php'));
+        $CFG->wwwroot .'/local/friendly_url/manage.php'));
 }

@@ -24,8 +24,8 @@
 
 defined ('MOODLE_INTERNAL') || die();
 global $CFG;
-require_once($CFG->dirroot .'C:\xampp\htdocs\friendly_url\lib.php');
-require_once($CFG->dirroot .'C:\xampp\htdocs\friendly_url\classes\manage_aliases.php');
+require_once($CFG->dirroot .'/local/friendly_url/lib.php');
+require_once($CFG->dirroot .'/local/friendly_url/classes/manage_aliases.php');
 
 /**
  * Unit tests for the manage_aliases class.

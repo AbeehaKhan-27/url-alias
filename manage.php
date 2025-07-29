@@ -21,8 +21,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once(__DIR__ . '/../../config.php');
-require_once($CFG->dirroot . '\local\friendly_url\classes\manage_aliases.php');
-require_once($CFG->dirroot . '\local\friendly_url\classes\search.php');
+require_once($CFG->dirroot . '/local/friendly_url/classes/manage_aliases.php');
+require_once($CFG->dirroot . '/local/friendly_url/classes/search.php');
 
 require_login();
 $systemcontext = context_system::instance();
@@ -52,18 +52,7 @@ if ($query !== '') {
     $mform->set_data(['query' => $query]);
 }
 
-$urls['aliases'] = [
-    [
-        'id' => 1,
-        'friendly' => 'http://localhost/fakefriendly',
-        'destination' => 'http://localhost/fakedestination',
-        'editurl' => new moodle_url('/local/friendly_url/edit.php'),
-        // You might need to add buttons here if your template uses them inside each URL item:
-        'edit_button' => get_string('edit_button', 'local_friendly_url'),
-        'delete_button' => get_string('delete_button', 'local_friendly_url'),
-    ]
-];
-//$urls = $manager->get_alias($currpage, $query);
+$urls = $manager->get_alias($currpage, $query);
 echo $OUTPUT->header();
 
 $templatecontext = [

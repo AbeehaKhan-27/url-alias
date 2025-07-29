@@ -23,8 +23,8 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
-require_once($CFG->dirroot . '\local\friendly_url\classes\manage_aliases.php');
-require_once($CFG->dirroot . '\local\friendly_url\classes\edit_form.php');
+require_once($CFG->dirroot . '/local/friendly_url/classes/manage_aliases.php');
+require_once($CFG->dirroot . '/local/friendly_url/classes/edit_form.php');
 
 $PAGE->set_url(new moodle_url('/local/friendly_url/edit.php'));
 require_login();
