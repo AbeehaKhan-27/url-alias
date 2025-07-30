@@ -24,6 +24,8 @@
 
 namespace local_friendly_url;
 use advanced_testcase;
+use manage_aliases;
+
 defined ('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->dirroot .'/local/friendly_url/lib.php');
@@ -45,13 +47,13 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_create_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
-        $aliases = $manager->get_aliases(0, '');
+        $manager = new manage_aliases();
+        $aliases = $manager->get_alias(0, '');
         $this->assertEmpty($aliases['aliases']);
 
-        $result = $manager->create_aliases('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
+        $result = $manager->create_alias('http://localhost/frontendmasters', 'http://localhost/course.php?id=99');
         $this->assertTrue($result);
-        $aliases = $manager->get_aliases(0, '');
+        $aliases = $manager->get_alias(0, '');
         $this->assertNotEmpty($aliases);
 
         $this->assertCount(1, $aliases['aliases']);
@@ -69,17 +71,17 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_update_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
+        $manager = new manage_aliases();
 
-        $manager->create_aliases('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
-        $aliases = $manager->get_aliases(0, '');
+        $manager->create_alias('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
+        $aliases = $manager->get_alias(0, '');
         $alias = array_pop($aliases['aliases']);
 
-        $manager->update_aliases($alias->id, 'http://localhost/editedalias', 'http://localhost/course.php?id=999');
-        $updatedalias = $manager->get_alias_by_id($alias->id);
+        $manager->update_alias($alias->id, 'http://localhost/editedalias', 'http://localhost/course.php?id=999');
+        $updatedalias = $manager->get_alias_by_url($alias->id);
 
-        $this->assertEquals('http://localhost/editedalias', $alias->friendly);
-        $this->assertEquals('http://localhost/course.php?id=999', $alias->destinationurl);
+        $this->assertEquals('http://localhost/editedalias', $updatedalias->friendly);
+        $this->assertEquals('http://localhost/course.php?id=999', $updatedalias->destinationurl);
     }
 
     /**
@@ -90,18 +92,18 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_delete_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
+        $manager = new manage_aliases();
 
-        $manager->create_aliases('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
-        $aliases = $manager->get_aliases(0, '');
+        $manager->create_alias('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
+        $aliases = $manager->get_alias(0, '');
         $this->assertCount(1, $aliases['aliases']);
         $alias = array_pop($aliases['aliases']);
 
-        $result = $manager->delete_aliases($alias->id);
+        $result = $manager->delete_alias($alias->id);
         $this->assertTrue($result);
 
-        $this->assertEquals($manager->get_alias_id(), $alias->id);
-        $this->assertEquals($aliases['aliases']);
+        $this->assertFalse($manager->get_alias_by_url($alias->id));
+        $this->assertEmpty($aliases['aliases']);
     }
 
     /**
@@ -112,13 +114,13 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_get_alias_by_id(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
+        $manager = new manage_aliases();
 
-        $manager->create_aliases('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
-        $aliases = $manager->get_aliases(0, '');
+        $manager->create_alias('http://localhost/frontendmasters', 'http://localhost/course.php?id=99');
+        $aliases = $manager->get_alias(0, '');
         $alias = array_pop($aliases['aliases']);
 
-        $result = $manager->get_alias_by_id($alias->id);
+        $result = $manager->get_alias_by_url($alias->id);
 
         $this->assertEquals('http://localhost/frontendmasters', $result->friendly);
         $this->assertEquals('http://localhost/course.php?id=99', $result->destinationurl);
@@ -132,10 +134,10 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_search_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
+        $manager = new manage_aliases();
 
-        $manager->create_aliases('http://localhost/frontendmaster', 'http://localhost/course.php?id=99');
-        $aliases = $manager->get_aliases(0, '');
+        $manager->create_alias('http://localhost/frontendmasters', 'http://localhost/course.php?id=99');
+        $aliases = $manager->get_alias(0, '');
         $this->assertNotEmpty($aliases);
         $this->assertCount(1, $aliases['aliases']);
         $alias = array_pop($aliases['aliases']);
@@ -152,27 +154,27 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_pagination_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
+        $manager = new manage_aliases();
 
         for ($i = 1; $i <= 7; $i++) {
             $manager->create_alias("http://localhost/{$i}", "http://localhost/course.php?id={$i}");
         }
 
-        $aliasespage0 = $manager->get_aliases(0, '');
+        $aliasespage0 = $manager->get_alias(0, '');
         $this->assertNotEmpty($aliasespage0);
         $this->assertCount(3, $aliasespage0['aliases']);
         $this->assertEquals(0, $aliasespage0['page']);
         $this->assertEquals(3, $aliasespage0['pages']);
         $this->assertEquals(7, $aliasespage0['count']);
 
-        $aliasespage1 = $manager->get_aliases(1, '');
+        $aliasespage1 = $manager->get_alias(1, '');
         $this->assertNotEmpty($aliasespage1);
         $this->assertCount(3, $aliasespage1['aliases']);
         $this->assertEquals(1, $aliasespage1['page']);
         $this->assertEquals(3, $aliasespage1['pages']);
         $this->assertEquals(7, $aliasespage1['count']);
 
-        $aliasespage2 = $manager->get_aliases(2, '');
+        $aliasespage2 = $manager->get_alias(2, '');
         $this->assertNotEmpty($aliasespage2);
         $this->assertCount(1, $aliasespage2['aliases']);
         $this->assertEquals(2, $aliasespage2['page']);
@@ -197,27 +199,27 @@ final class friendly_url_manager_test extends advanced_testcase {
     public function test_search_pagination_alias(): void {
         $this->resetAfterTest();
         $this->setUser(2);
-        $manager = new friendly_url_manager();
+        $manager = new manage_aliases();
 
         for ($i = 1; $i <= 7; $i++) {
-            $manager->create_alias("http://localhost/{$i}", "http://localhost/course.php?id={$i}");
+            $manager->create_alias("http://localhost/esaka{$i}", "http://localhost/course.php?id={$i}");
         }
 
-        $aliasespage0 = $manager->get_aliases(0, 'esaka');
+        $aliasespage0 = $manager->get_alias(0, 'esaka');
         $this->assertNotEmpty($aliasespage0);
         $this->assertCount(3, $aliasespage0['aliases']);
         $this->assertEquals(0, $aliasespage0['page']);
         $this->assertEquals(3, $aliasespage0['pages']);
         $this->assertEquals(7, $aliasespage0['count']);
 
-        $aliasespage1 = $manager->get_aliases(1, 'esaka');
+        $aliasespage1 = $manager->get_alias(1, 'esaka');
         $this->assertNotEmpty($aliasespage1);
         $this->assertCount(3, $aliasespage1['aliases']);
         $this->assertEquals(1, $aliasespage1['page']);
         $this->assertEquals(3, $aliasespage1['pages']);
         $this->assertEquals(7, $aliasespage1['count']);
 
-        $aliasespage2 = $manager->get_aliases(2, 'esaka');
+        $aliasespage2 = $manager->get_alias(2, 'esaka');
         $this->assertNotEmpty($aliasespage2);
         $this->assertCount(1, $aliasespage2['aliases']);
         $this->assertEquals(2, $aliasespage2['page']);
