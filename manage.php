@@ -35,6 +35,9 @@ $PAGE->set_context($systemcontext);
 $PAGE->set_heading(get_string('manage_alias', 'local_friendly_url'));
 $PAGE->set_title(get_string('manage_alias', 'local_friendly_url'));
 $PAGE->requires->js_call_amd('local_friendly_url/confirm');
+$PAGE->navbar->add(get_string('plugins', 'admin'), new moodle_url('#'));
+$PAGE->navbar->add('Local plugins', new moodle_url('/admin/plugins.php#localplugins'));
+$PAGE->navbar->add(get_string('pluginname', 'local_friendly_url'), new moodle_url('/local/friendly_url/manage.php'));
 
 $manager = new manage_aliases();
 $currpage = optional_param('page', 0, PARAM_INT);

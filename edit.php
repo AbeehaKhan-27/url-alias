@@ -33,6 +33,10 @@ require_capability('local/friendly_url:managealias', $systemcontext);
 $PAGE->set_context($systemcontext);
 $PAGE->set_heading(get_string('edit_alias', 'local_friendly_url'));
 $PAGE->set_title(get_string('edit_alias', 'local_friendly_url'));
+$PAGE->navbar->add(get_string('plugins', 'admin'), new moodle_url('#'));
+$PAGE->navbar->add('Local plugins', new moodle_url('/admin/plugins.php#localplugins'));
+$PAGE->navbar->add(get_string('pluginname', 'local_friendly_url'), new moodle_url('/local/friendly_url/manage.php'));
+$PAGE->navbar->add(get_string('edit_alias', 'local_friendly_url'));
 
 $aliasid = optional_param('aliasid', null, PARAM_INT);
 $mform = new edit();
