@@ -3,7 +3,7 @@ Feature: Manage aliases
 
   Background:
     When I log in as "admin"
-    And I navigate to "Plugins > Manage alias" in site administration
+    And I navigate to "Plugins > Manage page" in site administration
 
     And I press "Create url"
     And I set the field "friendly" to "http://localhost/1"
@@ -28,7 +28,7 @@ Feature: Manage aliases
   @javascript
   Scenario: Creating and editing alias
     When I log in as "admin"
-    And I navigate to "Plugins > Manage alias" in site administration
+    And I navigate to "Plugins > Manage page" in site administration
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
     And I press "Edit url"
     And I set the field "friendly" to "http://localhost/edited"
@@ -40,7 +40,7 @@ Feature: Manage aliases
   @javascript
   Scenario: Creating and deleting alias
     When I log in as "admin"
-    And I navigate to "Plugins > Manage alias" in site administration
+    And I navigate to "Plugins > Manage page" in site administration
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
     And I press "Delete url"
     And I click on "Delete url" "button" in the "Delete url alias" "dialogue"
@@ -50,7 +50,7 @@ Feature: Manage aliases
   @javascript
   Scenario: Creating and searching for an alias
     When I log in as "admin"
-    And I navigate to "Plugins > Manage alias" in site administration
+    And I navigate to "Plugins > Manage page" in site administration
     And I set the field "query" to "1"
     And I press "Filter"
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
@@ -60,7 +60,7 @@ Feature: Manage aliases
   @javascript
   Scenario: Creating and select page 2
     When I log in as "admin"
-    And I navigate to "Plugins > Manage alias" in site administration
+    And I navigate to "Plugins > Manage page" in site administration
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
     Then I should not see "URL alias not found."
     And I click on "//li[@data-page-number='2']" "xpath_element"
