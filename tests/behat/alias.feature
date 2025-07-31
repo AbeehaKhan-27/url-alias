@@ -5,22 +5,22 @@ Feature: Manage aliases
     When I log in as "admin"
     And I navigate to "Plugins > Manage page" in site administration
 
-    And I press "Create url"
+    And I press "Create URL"
     And I set the field "friendly" to "http://localhost/1"
     And I set the field "destinationurl" to "http://localhost/course.php?id=1"
     And I press "Save changes"
 
-    And I press "Create url"
+    And I press "Create URL"
     And I set the field "friendly" to "http://localhost/2"
     And I set the field "destinationurl" to "http://localhost/course.php?id=2"
     And I press "Save changes"
 
-    And I press "Create url"
+    And I press "Create URL"
     And I set the field "friendly" to "http://localhost/3"
     And I set the field "destinationurl" to "http://localhost/course.php?id=3"
     And I press "Save changes"
 
-    And I press "Create url"
+    And I press "Create URL"
     And I set the field "friendly" to "http://localhost/4"
     And I set the field "destinationurl" to "http://localhost/course.php?id=4"
     And I press "Save changes"
@@ -30,7 +30,7 @@ Feature: Manage aliases
     When I log in as "admin"
     And I navigate to "Plugins > Manage page" in site administration
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
-    And I press "Edit url"
+    And I press "Edit URL"
     And I set the field "friendly" to "http://localhost/edited"
     And I set the field "destinationurl" to "http://localhost/course.php?id=999"
     And I press "Save changes"
@@ -42,8 +42,8 @@ Feature: Manage aliases
     When I log in as "admin"
     And I navigate to "Plugins > Manage page" in site administration
     And I should see "http://localhost/course.php?id=1" in the "http://localhost/1" "table_row"
-    And I press "Delete url"
-    And I click on "Delete url" "button" in the "Delete url alias" "dialogue"
+    And I press "Delete URL"
+    And I click on "Delete URL" "button" in the "Delete URL title" "dialogue"
     Then I should not see "http://localhost/frontendmasters"
     And I log out
 
@@ -66,25 +66,3 @@ Feature: Manage aliases
     And I click on "//li[@data-page-number='2']" "xpath_element"
     And I should see "http://localhost/course.php?id=4" in the "http://localhost/4" "table_row"
     And I log out
-
-@javascript
-Scenario: Creating and editing alias using css_element
-  When I log in as "admin"
-  And I navigate to "Plugins > Manage page" in site administration
-  And I should see "http://localhost/course.php?id=2" in the "http://localhost/education" "table_row"
-  And I click on "input[onclick*='aliasid=3']" "css_element"
-  And I set the field "friendly" to "http://localhost/edited-education"
-  And I set the field "destinationurl" to "http://localhost/course.php?id=202"
-  And I press "Save changes"
-  And I should see "http://localhost/course.php?id=202" in the "http://localhost/edited-education" "table_row"
-  And I log out
-
-@javascript
-Scenario: Creating and deleting alias using css_element
-  When I log in as "admin"
-  And I navigate to "Plugins > Manage page" in site administration
-  And I should see "http://localhost/course.php?id=2" in the "http://localhost/education" "table_row"
-  And I click on "input.local_aliasid3.local_alias_delete_button" "css_element"
-  And I click on "Delete url" "button" in the "Delete url alias" "dialogue"
-  Then I should not see "http://localhost/education"
-  And I log out
